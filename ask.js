@@ -2,9 +2,9 @@ const readline = require('readline');
 
 const waitTime = 3500;
 const waitInterval = 500;
+const answers = [];
 
 let currentTime = 0;
-let answers = [];
 let str = '.';
 
 const questions = [
