@@ -1,0 +1,14 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "An app for making notes on Twitter friends and followers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul Barker",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
