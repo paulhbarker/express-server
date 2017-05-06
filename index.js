@@ -1,10 +1,14 @@
-var express = require('express');
-var app = express();
+const grab = (flag) => {
+	'use strict';
+	const index = process.argv.indexOf(flag);
+	return (index === - 1) ? null : process.argv[index + 1];
+}
 
-app.get('/', function(request, response) {
-	response.send("Wow it works!")
-});
+const greeting = grab('--greeting');
+const user = grab('--user');
 
-app.listen(8080, function() {
-	console.log("Express server is running on port 8080");
-});
+if ( ! user || ! greeting ) {
+	console.log('You didn\'t supply any input...');
+} else {
+	console.log(`Welcome ${user}, ${greeting}`);
+}
