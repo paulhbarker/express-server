@@ -1,23 +1,9 @@
 const readline = require('readline');
 
-
-const grab = (flag) => {
-	const index = process.argv.indexOf(flag);
-	return (index === - 1) ? null : process.argv[index + 1];
-};
-
-const greeting = grab('--greeting');
-const user = grab('--user');
-
-if ( ! user || ! greeting ) {
-	console.log('You didn\'t supply any input...');
-} else {
-	console.log(`Welcome ${user}, ${greeting}`);
-}
-
-const waitTime = 3000;
-let currentTime = 0;
+const waitTime = 3500;
 const waitInterval = 500;
+
+let currentTime = 0;
 let answers = [];
 let str = '.';
 
@@ -27,13 +13,12 @@ const questions = [
 	"What is your preffered programming language?"
 ];
 
-function ask(i) {
-	'use strict';
+const ask = (i) =>  {
 	process.stdout.write(`\n${questions[i]}`);
 	process.stdout.write(" > ");
 }
 
-function writeWaitingMessage() {
+const writeWaitingMessage = () => {
 	if (str.length > 3) str = '.';
 
 	readline.clearLine(process.stdout, 0);
@@ -43,6 +28,7 @@ function writeWaitingMessage() {
 	str += '.';
 }
 
+// Listen for input
 process.stdin.on('data', (data) => {
 
 	answers.push(data.toString().trim());
@@ -64,6 +50,7 @@ process.stdin.on('data', (data) => {
 	}
 } );
 
+// Listen for process.exit()
 process.on('exit', () => {
 	process.stdout.write('\n\n');
 	process.stdout.write(`${answers[1]} is for losers, ${answers[0]}. You need to write more ${answers[2]}.`);
@@ -71,6 +58,3 @@ process.on('exit', () => {
 });
 
 ask(0);
-
-
-
