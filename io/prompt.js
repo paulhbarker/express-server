@@ -10,19 +10,19 @@ const realPerson = {
 
 rl.question('What is your grandmother\'s name? ', (answer) => {
 	realPerson.name = answer;
-	const outFile = './io/' + realPerson.name + ".md";
 
-	fs.writeFileSync(outFile, `${realPerson.name}\n=================\n\n`);
+	const stream = fs.createWriteStream('./io/' + realPerson.name + ".md");
+	stream.write(`${realPerson.name}\n=================\n\n`);
 
 	rl.setPrompt(`What would ${realPerson.name} say? `);
 	rl.prompt();
 	rl.on('line', (saying) => {
 		if (saying.toLowerCase().trim() === 'exit') {
+			stream.close();
 			rl.close();
 		} else {
 			realPerson.sayings.push(saying.trim());
-
-			fs.appendFile(outFile, `* ${saying.trim()}\n`);
+			stream.write(`* ${saying.trim()}\n`);
 
 			rl.setPrompt(`What would ${realPerson.name} say? ('exit' to leave) `);
 			rl.prompt();
