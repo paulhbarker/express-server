@@ -1,5 +1,5 @@
 const http = require('http');
-const data = require('./data/inventory');
+const data = require('../data/inventory');
 
 http.createServer((req, res) => {
 	if (req.url === '/') {
