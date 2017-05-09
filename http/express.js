@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 });
 
 // Boot a static server serving files in this dir.
-app.use(express.static('./public'));
+app.use(express.static('./http/public'));
 
 // Allow cross-origin resource sharing.
 app.use(cors());
